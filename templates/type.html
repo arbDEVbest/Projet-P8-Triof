@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Triof</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <noscript>
+      <link rel="stylesheet" href="/static/css/noscript.css" />
+    </noscript>
+
+    <style>
+      #wrapper:before {
+        content: normal;
+      }
+    </style>
+  </head>
+
+  <body class="is-preload">
+    <!-- Wrapper -->
+    <div id="wrapper">
+      <!-- Main -->
+      <section id="main">
+        <header>
+          <p>Please select the type of waste</p>
+        </header>
+
+        <p id="type" hidden>{{type}}</p>
+        <p>Le déchêt predit est:{{type}}</p>
+        <p id="proba">A une probalité de:{{proba}}%</p>
+
+        <form method="post" action="/confirmation">
+          <div class="fields">
+            {% if option %}
+            <div class="field">
+              <input
+                type="radio"
+                name="type"
+                id="bouteille"
+                value="Bouteille"
+              />
+
+              <label for="bouteille">Bouteille plastique</label>
+
+              <input type="radio" name="type" id="gobelet" value="gobelet" />
+              <label for="gobelet">Gobelet en plastique</label>
+
+              <input type="radio" name="type" id="couvert" value="couvert" />
+              <label for="couvert">Couverts en plastique</label>
+            </div>
+            {% else %}
+            <div class="field">
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="Bouteille_propre"
+                  value="Bouteille_propre"
+                />
+                <label for="Bouteille_propre">Bouteille propre</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="Bouteille_sale"
+                  value="Bouteille_sale"
+                />
+                <label for="Bouteille_sale">Bouteille sale</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="goblet_propre"
+                  value="goblet_propre"
+                />
+                <label for="goblet_propre">Goblet propre</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="goblet_sale"
+                  value="goblet_sale"
+                />
+                <label for="goblet_sale">Goblet sale</label>
+              </div>
+
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="couvert_propre"
+                  value="couvert_propre"
+                />
+                <label for="couvert_propre">Couvert propre</label>
+			  </div>
+			  <div>
+				<input
+                  type="radio"
+                  name="type"
+                  id="couvert_sale"
+                  value="couvert_sale"
+                />
+                <label for="couvert_sale">Couvert sale</label>
+			  </div>
+            {% endif %}
+            <div class="field">
+              <input type="submit" value="confirm" />
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      var type = document.getElementById("type").textContent;
+     
+	  console.log(type)
+
+      if (type == "Bottle") {
+        document.getElementById("bouteille").checked = true;
+      } else if (type == "Cup") {
+        document.getElementById("gobelet").checked = true;
+      } else if(type == "Cutlery") {
+        document.getElementById("couvert").checked = true;
+      }
+	  else if (type == "bouteille-propre"){
+		  document.getElementById("Bouteille_propre").checked = true
+	  }
+	  else if(type== "bouteille-sale"){
+		  document.getElementById("Bouteille_sale").checked = true
+	  }
+	  else if (type =="goblet-propre"){
+		  document.getElementById("goblet_propre").checked = true
+	  }
+	  else if(type =="goblet-sale"){
+		  document.getElementById("goblet_sale").checked = true
+	  }
+	  else if(type == "couvert-propre"){
+		  document.getElementById("couvert_propre").checked = true
+	  }
+	  else{
+		  document.getElementById("couvert_sale").checked = true
+	  }
+    </script>
+    <script>
+      if ("addEventListener" in window) {
+        window.addEventListener("load", function () {
+          document.body.className = document.body.className.replace(
+            /\bis-preload\b/,
+            ""
+          );
+        });
+        document.body.className += navigator.userAgent.match(/(MSIE|rv:11\.0)/)
+          ? " is-ie"
+          : "";
+      }
+    </script>
+  </body>
+</html>
